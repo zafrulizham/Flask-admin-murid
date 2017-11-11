@@ -7,11 +7,12 @@ from flask_admin.contrib.sqla import ModelView
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///admin.sqlite3'
 app.config['SECRET_KEY'] = 'myflaskkey'
-app.config['FLASK_ADMIN_SWATCH'] = 'default'
+app.config['FLASK_ADMIN_SWATCH'] = 'flatly'
 
 db = SQLAlchemy(app)
 
 admin = Admin(app, name='Dashboard', template_mode='bootstrap3')
+
 
 class Murid(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,17 +32,9 @@ def index():
     return '<a href="/admin/">Click me to get to Admin!</a>'
 
 
-
-
-
 # admin.add_view(ModelView(Person, db.session))
 admin.add_view(ModelView(Murid, db.session))
 
 
-
-
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-  
